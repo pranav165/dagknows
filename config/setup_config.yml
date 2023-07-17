@@ -1,0 +1,14 @@
+app:
+    url: https://daily.dagknows.com
+    email: pranav165@gmail.com
+    password: 4Yt%DTk3BT
+
+app_local:
+    url: https://localhost:8980
+    email: pranav165@gmail.com
+    password: 4Yt%DTk3BT
+
+
+test_data:
+    phone: 1234567890
+

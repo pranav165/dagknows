@@ -1,0 +1,7 @@
+pytest
+retry
+pytest-html
+flake8
+pyyaml
+selenium
+webdriver-manager
