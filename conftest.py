@@ -41,14 +41,6 @@ def login(init_driver):
     return homepage
 
 
-@pytest.fixture(scope="function", autouse=False)
-def login_blank(init_driver):
-    page_obj = init_driver
-    url = Config.app_url
-    page_obj.open(url)
-    homepage = page_obj.login("", "")
-    return homepage
-
 #
 # @pytest.hookimpl(hookwrapper=True, tryfirst=True)
 # def pytest_runtest_makereport(item):
