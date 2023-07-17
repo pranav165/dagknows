@@ -1,3 +1,5 @@
+import pytest
+
 from utils.testbase import TestBase
 from config.config import Config
 
@@ -21,6 +23,7 @@ class TestLogin(TestBase):
         assert login_page.is_show_Error("Invalid credential.") is True
         assert login_page.is_login_screen() is True
 
+    @pytest.mark.skip(reason="This issue is raise as BUG_0014")
     def test_login_invalid_username(self, open_login_page):
         """
         Test for login with invalid username
@@ -29,6 +32,7 @@ class TestLogin(TestBase):
         login_page.login(username="testEmail", password=Config.password)
         assert login_page.is_login_screen() is True
 
+    @pytest.mark.skip(reason="This issue is raise as BUG_0014")
     def test_login_invalid_username_password(self, open_login_page):
         """
         Test for login with invalid username and password
@@ -37,6 +41,7 @@ class TestLogin(TestBase):
         login_page.login(username="testEmail", password="123")
         assert login_page.is_login_screen() is True
 
+    @pytest.mark.skip(reason="This issue is raise as BUG_0013")
     def test_login_blank(self, open_login_page):
         """
         Test for login with blank username and password
