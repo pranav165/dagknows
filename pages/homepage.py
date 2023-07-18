@@ -4,7 +4,7 @@ from pages.taskcreatepage import CreateTaskPage
 
 class HomePage(PageBase):
     create_runbook = "xpath@@//button[contains(@class,'create-runbook')]"
-    user_menu = "signed_in_user_iconsdsdsd"
+    user_menu = "xpath@@//div[@id='user_icon_container']"
     search_runbook = "xpath@@//input[@placeholder='Search for runbooks']"
     runbook = "xpath@@//a[contains(@href,'tasks')]"
 

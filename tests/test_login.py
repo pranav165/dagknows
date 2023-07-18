@@ -1,3 +1,5 @@
+import pytest
+
 from utils.testbase import TestBase
 from config.config import Config
 
@@ -10,22 +12,43 @@ class TestLogin(TestBase):
         Test for login with valid credentials
         """
         login_page = login
-        login_page.assert_logged_in()
+        assert login_page.assert_logged_in() is True
 
-    def test_login_invalid_password(self,init_driver):
+    def test_login_invalid_password(self, open_login_page):
         """
         Test for login with invalid password
         """
-        login_page = init_driver
+        login_page = open_login_page
         login_page.login(username=Config.email, password="!@#!@$")
-        assert login_page.is_user_logged_in() is False
+        assert login_page.is_show_Error("Invalid credential.") is True
+        assert login_page.is_login_screen() is True
 
-    def test_login_blank(self, login):
+    @pytest.mark.skip(reason="This issue is raise as BUG_0014")
+    def test_login_invalid_username(self, open_login_page):
         """
-        Test for login
+        Test for login with invalid username
         """
-        login_page = self.login_user(self.driver)
-        login_page.assert_logged_in()
+        login_page = open_login_page
+        login_page.login(username="testEmail", password=Config.password)
+        assert login_page.is_login_screen() is True
+
+    @pytest.mark.skip(reason="This issue is raise as BUG_0014")
+    def test_login_invalid_username_password(self, open_login_page):
+        """
+        Test for login with invalid username and password
+        """
+        login_page = open_login_page
+        login_page.login(username="testEmail", password="123")
+        assert login_page.is_login_screen() is True
+
+    @pytest.mark.skip(reason="This issue is raise as BUG_0013")
+    def test_login_blank(self, open_login_page):
+        """
+        Test for login with blank username and password
+        """
+        login_page = open_login_page
+        login_page.login(username="", password="")
+        assert login_page.is_login_screen() is True
 
     def test_create_runbook(self, login):
         runbook_data = {

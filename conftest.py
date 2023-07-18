@@ -24,13 +24,22 @@ def init_driver():
     driver.quit()
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="function", autouse=False)
+def open_login_page(init_driver):
+    login_page = init_driver
+    url = Config.app_url
+    login_page.open(url)
+    return login_page
+
+
+@pytest.fixture(scope="function", autouse=False)
 def login(init_driver):
     page_obj = init_driver
     url = Config.app_url
     page_obj.open(url)
     homepage = page_obj.login(Config.email, Config.password)
     return homepage
+
 
 #
 # @pytest.hookimpl(hookwrapper=True, tryfirst=True)
